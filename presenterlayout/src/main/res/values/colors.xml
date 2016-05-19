@@ -5,4 +5,8 @@
     <color name="default_background_no_connection_layout">#FFD51D</color>
     <color name="default_background_success_layout">#8DC63F</color>
     <color name="default_text_color">#fff</color>
+    <color name="white">#ffffff</color>
+    <color name="greenyellow">#adff2f</color>
+    <color name="primary_green_color">#66CC00</color>
+    <color name="deep_green">#27ae60</color>
 </resources>

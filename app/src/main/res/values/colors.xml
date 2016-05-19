@@ -3,4 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="background_no_wifi">#abe41b</color>
+    <color name="black">#000</color>
+    <color name="transparent_grey">#cc998f8f</color>
 </resources>

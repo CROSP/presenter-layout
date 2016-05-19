@@ -4,4 +4,9 @@
     <string name="text_show_loading">Show loading</string>
     <string name="text_show_error">Show error message</string>
     <string name="text_show_success">Show success</string>
+    <string name="image_description_no_wifi">No wifi icon</string>
+    <string name="text_no_wifi">No wifi connection is available at the moment, please try again later or try to refresh, pull the screen down</string>
+    <string name="text_show_no_wifi_connection">Show no WIFI connection</string>
+    <string name="text_transparent_message">Transparent Message</string>
+    <string name="text_show_transparent">Show transparent view</string>
 </resources>

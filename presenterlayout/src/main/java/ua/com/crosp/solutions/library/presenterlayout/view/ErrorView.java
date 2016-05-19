@@ -17,6 +17,7 @@ import ua.com.crosp.solutions.library.presenterview.R;
  * Package : ua.com.crosp.solutions.library.presenterlayout.view
  */
 public class ErrorView extends SwipeRefreshLayout {
+
     // Views
     private IconTextView mIconTextViewErrorIcon;
     private TextView mTextViewError;
@@ -79,4 +80,16 @@ public class ErrorView extends SwipeRefreshLayout {
         mTextViewError = (TextView) parentView.findViewById(R.id.text_view_error_text);
         mFrameLayoutContainer = (FrameLayout) parentView.findViewById(R.id.frame_layout_view_container);
     }
+    public IconTextView getIconTextViewErrorIcon() {
+        return mIconTextViewErrorIcon;
+    }
+
+    public TextView getTextViewError() {
+        return mTextViewError;
+    }
+
+    public FrameLayout getFrameLayoutContainer() {
+        return mFrameLayoutContainer;
+    }
+
 }

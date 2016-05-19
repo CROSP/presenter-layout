@@ -42,7 +42,7 @@ public class SuccessView extends FrameLayout {
         View inflatedView = inflate(getContext(), R.layout.view_overlapping_default_success, this);
         inflatedView.setBackgroundColor(getResources().getColor(R.color.default_background_success_layout));
         findViews(inflatedView);
-        setId(R.id.view_overlapping_default_loading);
+        setId(R.id.view_overlapping_default_success);
     }
 
     private void findViews(View inflatedView) {
@@ -51,6 +51,17 @@ public class SuccessView extends FrameLayout {
         mTextViewSuccess = (TextView) inflatedView.findViewById(R.id.text_view_success);
     }
 
+    public TextView getTextViewSuccess() {
+        return mTextViewSuccess;
+    }
+
+    public IconTextView getIconTextViewSuccess() {
+        return mIconTextViewSuccess;
+    }
+
+    public Button getButtonSuccess() {
+        return mButtonSuccess;
+    }
     public void setSuccessIcon(String successIcon) {
         mIconTextViewSuccess.setText(successIcon);
     }

@@ -37,18 +37,34 @@ public class PresenterLayout extends FrameLayout {
     private static final List<Integer> CONTAINER_IDS;
     private static final List<Integer> DEFAULT_VIEWS_IDS;
 
+    // Default view types
+
+    public static final int NONE_VIEW = -1;
+    public static final int LOADING_VIEW = 0;
+    public static final int SUCCESS_VIEW = 1;
+    public static final int ERROR_VIEW = 2;
+    public static final int NO_CONNECTION_VIEW = 3;
+
     // Views
+
     private FrameLayout mFrameLayoutChildViewsContainer;
     private FrameLayout mFrameLayoutOverlappingViewContainer;
     private ErrorView mErrorView;
     private LoadingView mLoadingView;
     private NoConnectionView mNoConnectionView;
     private SuccessView mSuccessView;
+
     // Variables
+
+    private boolean mInflateDefaultViews = true;
+    private int mInitialViewId;
+    private boolean mAreDefaultViewsInflated = false;
     private Map<Integer, View> mOverlappingViewsMap = new HashMap<>();
-    private LayoutParams mCommonChildLayoutParams;
+    private static LayoutParams COMMON_LAYOUT_PARAMS;
+
     // Default attribute values
     private int mDefaultOverlappingBackgroundColor;
+
     // Current attribute values
     private int mOverlappingBackgroundColor;
 
@@ -64,6 +80,7 @@ public class PresenterLayout extends FrameLayout {
         DEFAULT_VIEWS_IDS.add(R.id.view_overlapping_default_loading);
         DEFAULT_VIEWS_IDS.add(R.id.view_overlapping_default_success);
         DEFAULT_VIEWS_IDS.add(R.id.view_overlapping_default_no_connection);
+        COMMON_LAYOUT_PARAMS = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT);
     }
 
 
@@ -76,7 +93,9 @@ public class PresenterLayout extends FrameLayout {
         super(context);
         initializedDefaultsFromXml();
         initLayout();
-        createDefaultOverlappingViews();
+        if (mInflateDefaultViews) {
+            inflateDefaultOverlappingViews();
+        }
     }
 
     /**
@@ -90,7 +109,9 @@ public class PresenterLayout extends FrameLayout {
         initializedDefaultsFromXml();
         collectAttributes(attrs);
         initLayout();
-        createDefaultOverlappingViews();
+        if (mInflateDefaultViews) {
+            inflateDefaultOverlappingViews();
+        }
     }
 
     /**
@@ -105,7 +126,9 @@ public class PresenterLayout extends FrameLayout {
         initializedDefaultsFromXml();
         collectAttributes(attrs);
         initLayout();
-        createDefaultOverlappingViews();
+        if (mInflateDefaultViews) {
+            inflateDefaultOverlappingViews();
+        }
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -114,24 +137,49 @@ public class PresenterLayout extends FrameLayout {
         initializedDefaultsFromXml();
         collectAttributes(attrs);
         initLayout();
-        createDefaultOverlappingViews();
+        if (mInflateDefaultViews) {
+            inflateDefaultOverlappingViews();
+        }
     }
 
-    public void createDefaultOverlappingViews() {
-        mCommonChildLayoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT);
-        Context context = getContext();
-        mErrorView = new ErrorView(context);
-        mLoadingView = new LoadingView(context);
-        mNoConnectionView = new NoConnectionView(context);
-        mSuccessView = new SuccessView(context);
-        mErrorView.setVisibility(GONE);
-        mLoadingView.setVisibility(GONE);
-        mNoConnectionView.setVisibility(GONE);
-        mSuccessView.setVisibility(GONE);
-        addOverlappingView(mErrorView);
-        addOverlappingView(mLoadingView);
-        addOverlappingView(mNoConnectionView);
-        addOverlappingView(mSuccessView);
+    /**
+     * Inflate views provided by default add them into layout
+     */
+    public void inflateDefaultOverlappingViews() {
+        if (!mAreDefaultViewsInflated) {
+            mAreDefaultViewsInflated = true;
+            Context context = getContext();
+            mErrorView = new ErrorView(context);
+            mLoadingView = new LoadingView(context);
+            mNoConnectionView = new NoConnectionView(context);
+            mSuccessView = new SuccessView(context);
+            mErrorView.setVisibility(GONE);
+            mLoadingView.setVisibility(GONE);
+            mNoConnectionView.setVisibility(GONE);
+            mSuccessView.setVisibility(GONE);
+            addOverlappingView(mErrorView);
+            addOverlappingView(mLoadingView);
+            addOverlappingView(mNoConnectionView);
+            addOverlappingView(mSuccessView);
+            if (mInitialViewId != NONE_VIEW) {
+                switch (mInitialViewId) {
+                    case SUCCESS_VIEW:
+                        showSuccess();
+                        break;
+                    case ERROR_VIEW:
+                        showErrorMessage();
+                        break;
+                    case NO_CONNECTION_VIEW:
+                        showNoConnection();
+                        break;
+                    case LOADING_VIEW:
+                        showLoading();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
     }
 
 
@@ -145,6 +193,8 @@ public class PresenterLayout extends FrameLayout {
         TypedArray attributesArray = getContext().obtainStyledAttributes(attributeSet, R.styleable.PresenterLayout);
         try {
             mOverlappingBackgroundColor = attributesArray.getColor(R.styleable.PresenterLayout_background_color_overlapping, mDefaultOverlappingBackgroundColor);
+            mInflateDefaultViews = attributesArray.getBoolean(R.styleable.PresenterLayout_inflate_default_views, true);
+            mInitialViewId = attributesArray.getInt(R.styleable.PresenterLayout_show_initial_view, NONE_VIEW);
         } finally {
             attributesArray.recycle();
         }
@@ -154,7 +204,6 @@ public class PresenterLayout extends FrameLayout {
      * Initialize default values from xml like color, dimension ...
      */
     private void initializedDefaultsFromXml() {
-        // mDefaultOverlappingBackgroundColor = getResources().getColor(R.color.default_background_loading_layout);
         mDefaultOverlappingBackgroundColor = Color.TRANSPARENT;
     }
 
@@ -225,8 +274,16 @@ public class PresenterLayout extends FrameLayout {
      * @param view view
      */
     public void addOverlappingView(View view) {
-        mFrameLayoutOverlappingViewContainer.addView(view, mCommonChildLayoutParams);
+        mFrameLayoutOverlappingViewContainer.addView(view, COMMON_LAYOUT_PARAMS);
         mOverlappingViewsMap.put(view.getId(), view);
+    }
+
+    public void addOverlappingView(View view, boolean hide) {
+        mFrameLayoutOverlappingViewContainer.addView(view, COMMON_LAYOUT_PARAMS);
+        mOverlappingViewsMap.put(view.getId(), view);
+        if (hide) {
+            view.setVisibility(GONE);
+        }
     }
 
     // Delegating everything to child container
@@ -269,7 +326,7 @@ public class PresenterLayout extends FrameLayout {
      * @param hideOthers hide other views in overlapping container
      * @return if view has been found and shown
      */
-    public boolean showCustomOverlappingView(int viewId, boolean hideOthers) {
+    public boolean showOverlappingView(int viewId, boolean hideOthers) {
         // Check if view exists
         View targetView = mOverlappingViewsMap.get(viewId);
         if (targetView != null) {
@@ -315,29 +372,55 @@ public class PresenterLayout extends FrameLayout {
         }
     }
 
+    /**
+     * Hide overlapping view by ID
+     *
+     * @param targetViewId id of view to hide
+     */
+    public void hideOverlappingView(int targetViewId) {
+        View targetView = mOverlappingViewsMap.get(targetViewId);
+        if (targetView != null) {
+            targetView.clearAnimation();
+            targetView.setVisibility(GONE);
+        }
+    }
+
+    /**
+     * Hide overlapping container, all overlapping view will be hidden
+     */
     public void hideOverlappingContainer() {
         mFrameLayoutOverlappingViewContainer.setVisibility(GONE);
     }
 
+    /**
+     * Show overlapping container
+     */
     public void showOverlappingContainer() {
         mFrameLayoutOverlappingViewContainer.setVisibility(VISIBLE);
     }
 
     /**
      * Predefined methods for default views
+     * Just delegation
      */
     // Error specific methods
     public void showErrorMessage(String errorMessage) {
-        mErrorView.setErrorText(errorMessage);
-        mErrorView.setVisibility(VISIBLE);
+        if (mErrorView != null) {
+            mErrorView.setErrorText(errorMessage);
+            mErrorView.setVisibility(VISIBLE);
+        }
     }
 
     public void showErrorMessage() {
-        mErrorView.setVisibility(VISIBLE);
+        if (mErrorView != null) {
+            mErrorView.setVisibility(VISIBLE);
+        }
     }
 
     public void hideErrorMessage() {
-        mErrorView.setVisibility(GONE);
+        if (mErrorView != null) {
+            mErrorView.setVisibility(GONE);
+        }
     }
 
     public SwipeRefreshLayout getErrorRefreshLayout() {
@@ -345,77 +428,111 @@ public class PresenterLayout extends FrameLayout {
     }
 
     public void setErrorMessage(String errorMessage) {
-        mErrorView.setErrorText(errorMessage);
+        if (mErrorView != null) {
+            mErrorView.setErrorText(errorMessage);
+        }
     }
 
     public void setErrorIcon(String errorIcon) {
-        mErrorView.setErrorIcon(errorIcon);
+        if (mErrorView != null) {
+            mErrorView.setErrorIcon(errorIcon);
+        }
     }
 
     public void setErrorRefreshListener(SwipeRefreshLayout.OnRefreshListener onRefreshListener) {
-        mErrorView.setOnRefreshListener(onRefreshListener);
+        if (mErrorView != null) {
+            mErrorView.setOnRefreshListener(onRefreshListener);
+        }
     }
 
     public void setErrorBackgroundColor(int backgroundColor) {
-        mErrorView.setErrorBackgroundColor(backgroundColor);
+        if (mErrorView != null) {
+            mErrorView.setErrorBackgroundColor(backgroundColor);
+        }
     }
 
     // Loading specific methods
+
     public void showLoading(String loadingMessage) {
-        mLoadingView.setLoadingText(loadingMessage);
-        mLoadingView.setVisibility(VISIBLE);
+        if (mLoadingView != null) {
+            mLoadingView.setLoadingText(loadingMessage);
+            mLoadingView.setVisibility(VISIBLE);
+        }
     }
 
     public void showLoading() {
-        mLoadingView.setVisibility(VISIBLE);
+        if (mLoadingView != null) {
+            mLoadingView.setVisibility(VISIBLE);
+        }
     }
 
     public void hideLoading() {
-        mLoadingView.setVisibility(GONE);
+        if (mLoadingView != null) {
+            mLoadingView.setVisibility(GONE);
+        }
     }
 
     public void setLoadingText(String loadingText) {
-        mLoadingView.setLoadingText(loadingText);
+        if (mLoadingView != null) {
+            mLoadingView.setLoadingText(loadingText);
+        }
     }
 
     public void setLoadingIcon(String loadingIcon) {
-        mLoadingView.setLoadingIcon(loadingIcon);
+        if (mLoadingView != null) {
+            mLoadingView.setLoadingIcon(loadingIcon);
+        }
     }
 
     public void setLoadingBackground(int color) {
-        mLoadingView.setBackgroundColor(color);
+        if (mLoadingView != null) {
+            mLoadingView.setBackgroundColor(color);
+        }
     }
 
 
     // No connection specific methods
 
     public void showNoConnection() {
-        mNoConnectionView.setVisibility(VISIBLE);
+        if (mNoConnectionView != null) {
+            mNoConnectionView.setVisibility(VISIBLE);
+        }
     }
 
     public void hideNoConnection() {
-        mNoConnectionView.setVisibility(GONE);
+        if (mNoConnectionView != null)
+            mNoConnectionView.setVisibility(GONE);
     }
 
     public void showNoConnection(String message) {
-        mNoConnectionView.setNoConnectionText(message);
-        mNoConnectionView.setVisibility(VISIBLE);
+        if (mNoConnectionView != null) {
+            mNoConnectionView.setNoConnectionText(message);
+            mNoConnectionView.setVisibility(VISIBLE);
+        }
     }
 
     public void setNoConnectionText(String noConnectionText) {
-        mNoConnectionView.setNoConnectionText(noConnectionText);
+        if (mNoConnectionView != null) {
+            mNoConnectionView.setNoConnectionText(noConnectionText);
+        }
     }
 
     public void setNoConnectionIcon(String noConnectionIcon) {
-        mNoConnectionView.setNoConnectionIcon(noConnectionIcon);
+        if (mNoConnectionView != null) {
+            mNoConnectionView.setNoConnectionIcon(noConnectionIcon);
+        }
     }
 
     public void setNoConnectionBackgroundColor(int backgroundColor) {
-        mNoConnectionView.setNoConnectionBackgroundColor(backgroundColor);
+        if (mNoConnectionView != null) {
+            mNoConnectionView.setNoConnectionBackgroundColor(backgroundColor);
+        }
     }
 
     public void setNoConnectionRefreshListener(SwipeRefreshLayout.OnRefreshListener refreshListener) {
-        mNoConnectionView.setOnRefreshListener(refreshListener);
+        if (mNoConnectionView != null) {
+            mNoConnectionView.setOnRefreshListener(refreshListener);
+        }
     }
 
     public SwipeRefreshLayout getNoConnectionRefreshLayout() {
@@ -425,35 +542,69 @@ public class PresenterLayout extends FrameLayout {
     // Success specific methods
 
     public void showSuccess() {
-        mSuccessView.setVisibility(VISIBLE);
+        if (mSuccessView != null) {
+            mSuccessView.setVisibility(VISIBLE);
+        }
     }
 
     public void hideSuccess() {
-        mSuccessView.setVisibility(GONE);
+        if (mSuccessView != null) {
+            mSuccessView.setVisibility(GONE);
+        }
     }
 
     public void showSuccess(String successText) {
-        mSuccessView.setSuccessText(successText);
-        mSuccessView.setVisibility(VISIBLE);
+        if (mSuccessView != null) {
+            mSuccessView.setSuccessText(successText);
+            mSuccessView.setVisibility(VISIBLE);
+        }
     }
 
     public void setSuccessIcon(String successIcon) {
-        mSuccessView.setSuccessIcon(successIcon);
+        if (mSuccessView != null) {
+            mSuccessView.setSuccessIcon(successIcon);
+        }
     }
 
     public void setSuccessButtonText(String buttonText) {
-        mSuccessView.setSuccessButtonText(buttonText);
+        if (mSuccessView != null) {
+            mSuccessView.setSuccessButtonText(buttonText);
+        }
     }
 
     public void setSuccessBackgroundColor(int backgroundColor) {
-        mSuccessView.setBackgroundColor(backgroundColor);
+        if (mSuccessView != null) {
+            mSuccessView.setBackgroundColor(backgroundColor);
+        }
     }
 
     public void setSuccessText(String successText) {
-        mSuccessView.setSuccessText(successText);
+        if (mSuccessView != null) {
+            mSuccessView.setSuccessText(successText);
+        }
     }
 
     public void setSuccessButtonClickListener(OnClickListener successButtonClickListener) {
-        mSuccessView.setSuccessButtonListener(successButtonClickListener);
+        if (mSuccessView != null) {
+            mSuccessView.setSuccessButtonListener(successButtonClickListener);
+        }
     }
+
+    // Getters for default views
+    public SuccessView getSuccessView() {
+        return mSuccessView;
+    }
+
+    public LoadingView getLoadingView() {
+        return mLoadingView;
+    }
+
+    public NoConnectionView getNoConnectionView() {
+        return mNoConnectionView;
+    }
+
+    public ErrorView getErrorView() {
+        return mErrorView;
+    }
+
 }

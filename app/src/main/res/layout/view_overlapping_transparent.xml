@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/text_view_no_wifi_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:background="@drawable/background_border"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="@string/text_transparent_message"
+        android:textColor="@color/black"
+        android:textSize="25sp"/>
+</merge>

@@ -4,11 +4,19 @@
     android:id="@+id/presenter_layout_main"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/button_show_transparent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/button_show_success"
+            android:text="@string/text_show_transparent"/>
 
         <Button
             android:id="@+id/button_show_success"
@@ -39,6 +47,26 @@
             android:layout_below="@+id/button_show_loading"
             android:layout_centerInParent="true"
             android:text="@string/text_show_no_connection"/>
+
+        <Button
+            android:id="@+id/button_show_no_wifi_connection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button_show_no_connection"
+            android:layout_centerInParent="true"
+            android:text="@string/text_show_no_wifi_connection"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button_show_no_wifi_connection">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Nested layout text view"/>
+        </LinearLayout>
     </RelativeLayout>
 
 </ua.com.crosp.solutions.library.presenterlayout.layout.PresenterLayout>

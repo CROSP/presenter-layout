@@ -30,7 +30,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:layout_margin="20dp"
+        android:background="@drawable/background_button_green_filled"
         android:gravity="center"
+        android:padding="5dp"
         android:text="@string/text_okay"
         android:textColor="@color/default_text_color"
         android:textSize="@dimen/text_size_default_title"/>

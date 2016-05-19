@@ -10,22 +10,56 @@ import ua.com.crosp.solutions.library.presenterlayout.layout.PresenterLayout;
 
 public class MainActivity extends AppCompatActivity {
     public static final int DELAY_MILLIS = 2000;
+    public static final int ID_VIEW_TRANSPARENT = R.id.view_overlapping_transparent;
     PresenterLayout mPresenterLayout;
-    private Button mButtonShowError;
-    private Button mButtonShowLoading;
-    private Button mButtonShowNoConnection;
-    private Button mButtonShowSuccess;
+    private Button mButtonShowError, mButtonShowSuccess, mButtonShowLoading,
+            mButtonShowNoConnection, mButtonShowNoWifi, mButtonShowTransparent;
+    public static final int ID_VIEW_NO_WIFI = R.id.view_overlapping_no_wifi_connection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mPresenterLayout = (PresenterLayout) findViewById(R.id.presenter_layout_main);
+        final NoWifiView noWifiView = new NoWifiView(this);
+        noWifiView.setId(ID_VIEW_NO_WIFI);
+        noWifiView.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                noWifiView.setRefreshing(false);
+                mPresenterLayout.hideOverlappingView(ID_VIEW_NO_WIFI);
+            }
+        });
+        TransparentView transparentView = new TransparentView(this);
+        transparentView.setId(ID_VIEW_TRANSPARENT);
+        transparentView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPresenterLayout.hideOverlappingView(ID_VIEW_TRANSPARENT);
+            }
+        });
+        mPresenterLayout.addOverlappingView(noWifiView, true);
+        mPresenterLayout.addOverlappingView(transparentView);
+        mButtonShowTransparent = (Button) findViewById(R.id.button_show_transparent);
+        mButtonShowTransparent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPresenterLayout.showOverlappingView(ID_VIEW_TRANSPARENT, true);
+            }
+        });
         mButtonShowSuccess = (Button) findViewById(R.id.button_show_success);
+        mButtonShowNoWifi = (Button) findViewById(R.id.button_show_no_wifi_connection);
+        mButtonShowNoWifi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPresenterLayout.showOverlappingView(R.id.view_overlapping_no_wifi_connection, true);
+
+            }
+        });
         mButtonShowSuccess.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mPresenterLayout.showSuccess();
+                mPresenterLayout.showSuccess("Success !!!");
                 mPresenterLayout.setSuccessButtonClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

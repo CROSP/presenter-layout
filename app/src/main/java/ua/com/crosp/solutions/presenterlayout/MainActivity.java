@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState);g
         setContentView(R.layout.activity_main);
         mPresenterLayout = (PresenterLayout) findViewById(R.id.presenter_layout_main);
         final NoWifiView noWifiView = new NoWifiView(this);

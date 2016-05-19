@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_gravity="center"
+       android:background="@color/default_background_loading_layout"
+       android:orientation="vertical">
+
+    <com.joanzapata.iconify.widget.IconTextView
+        android:id="@+id/icon_text_view_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/icon_fa_refresh_spin"
+        android:textColor="@color/default_text_color"
+        android:textSize="@dimen/text_size_default_icon"/>
+
+    <TextView
+        android:id="@+id/text_view_loading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_margin="20dp"
+        android:gravity="center"
+        android:text="@string/text_loading_wait"
+        android:textColor="@color/default_text_color"
+        android:textSize="@dimen/text_size_default_title"/>
+</merge>

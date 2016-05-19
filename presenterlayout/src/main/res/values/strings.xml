@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">PresenterLayout</string>
+    <string name="icon_fa_refresh_spin">{fa-refresh spin}</string>
+    <string name="text_loading_wait">Loading please wait …</string>
+    <string name="icon_fa_times_circle">{fa-times-circle-o}</string>
+    <string name="text_error_occurred">Error occured</string>
+    <string name="icon_fa_plug">{fa-plug}</string>
+    <string name="text_no_connection">No connection</string>
+    <string name="text_success">Success</string>
+    <string name="icon_fa_check_circle">{fa-check-circle}</string>
+    <string name="text_okay">Okay</string>
+</resources>

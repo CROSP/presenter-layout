@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/text_view_success"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:layout_margin="20dp"
+        android:gravity="center"
+        android:text="@string/text_success"
+        android:textColor="@color/default_text_color"
+        android:textSize="@dimen/text_size_default_title"/>
+
+    <com.joanzapata.iconify.widget.IconTextView
+        android:id="@+id/icon_text_view_success"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/icon_fa_check_circle"
+        android:textColor="@color/default_text_color"
+        android:textSize="@dimen/text_size_default_icon"/>
+
+    <com.joanzapata.iconify.widget.IconButton
+        android:id="@+id/icon_button_success"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_margin="20dp"
+        android:gravity="center"
+        android:text="@string/text_okay"
+        android:textColor="@color/default_text_color"
+        android:textSize="@dimen/text_size_default_title"/>
+</merge>

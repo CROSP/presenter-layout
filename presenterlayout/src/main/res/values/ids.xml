@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="view_overlapping_default_loading" type="id"/>
+    <item name="view_overlapping_default_error" type="id"/>
+    <item name="view_overlapping_default_success" type="id"/>
+    <item name="view_overlapping_default_no_connection" type="id"/>
+</resources>

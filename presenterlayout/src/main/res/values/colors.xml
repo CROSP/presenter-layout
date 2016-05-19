@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="default_background_loading_layout">#4ea4e7</color>
+    <color name="default_background_error_layout">#e60a15</color>
+    <color name="default_background_no_connection_layout">#FFD51D</color>
+    <color name="default_background_success_layout">#8DC63F</color>
+    <color name="default_text_color">#fff</color>
+</resources>

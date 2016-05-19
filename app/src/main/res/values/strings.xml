@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">PresenterLayout</string>
+    <string name="text_show_no_connection">Show no connection</string>
+    <string name="text_show_loading">Show loading</string>
+    <string name="text_show_error">Show error message</string>
+    <string name="text_show_success">Show success</string>
+</resources>

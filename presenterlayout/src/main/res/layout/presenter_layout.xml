@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:orientation="vertical">
+    <!--All child views are added to this layout in order to make overlapping views be
+        always over these views -->
+    <FrameLayout
+        android:id="@+id/frame_layout_child_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    <!--Container where all views like progress, error, success ... are stored-->
+    <FrameLayout
+        android:id="@+id/frame_layout_overlapping_views_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</merge>

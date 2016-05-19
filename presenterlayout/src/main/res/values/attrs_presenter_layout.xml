@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PresenterLayout">
+        <attr name="background_color_overlapping" format="reference|color"/>
+        <attr name="show_overlapping_view_initially" format="boolean"/>
+        <attr name="show_initial_view" format="enum">
+            <enum name="loading" value="0"/>
+            <enum name="success" value="1"/>
+            <enum name="error" value="2"/>
+            <enum name="no_connection" value="3"/>
+        </attr>
+        <!--Progress view attributes -->
+        <attr name="progress_title" format="string"/>
+        <attr name="progress_loading_icon" format="string"/>
+        <attr name="progress_text_color" format="color"/>
+        <attr name="progress_background_color" format="color"/>
+
+    </declare-styleable>
+</resources>

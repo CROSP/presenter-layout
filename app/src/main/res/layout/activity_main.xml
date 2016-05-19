@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ua.com.crosp.solutions.library.presenterlayout.layout.PresenterLayout
+    android:id="@+id/presenter_layout_main"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/button_show_success"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/button_show_error"
+            android:text="@string/text_show_success"/>
+
+        <Button
+            android:id="@+id/button_show_error"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/text_show_error"/>
+
+        <Button
+            android:id="@+id/button_show_loading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button_show_error"
+            android:layout_centerInParent="true"
+            android:text="@string/text_show_loading"/>
+
+        <Button
+            android:id="@+id/button_show_no_connection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button_show_loading"
+            android:layout_centerInParent="true"
+            android:text="@string/text_show_no_connection"/>
+    </RelativeLayout>
+
+</ua.com.crosp.solutions.library.presenterlayout.layout.PresenterLayout>

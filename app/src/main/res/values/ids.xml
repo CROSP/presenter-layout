@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="view_overlapping_no_wifi_connection" type="id"/>
+    <item name="view_overlapping_transparent" type="id"/>
+</resources>

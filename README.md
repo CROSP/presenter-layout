@@ -9,7 +9,7 @@ It can be an error, success message, loading bar or just simple text message.
 Mostly every app has some actions that are performed in background like  data loading, I/O operations,
 database querying and to notify user shows loading, but error may occurr or suddenly internet connection may lost, so user   
 have to be notified about this.     
-Moreover prevent app crashes because of user from clicking everywhere while data is loading.   
+Moreover prevent app crashes because of user clicking everywhere while data is loading.   
 
 **Presenter** name comes from [Android Clean Architecture](https://github.com/android10/Android-CleanArchitecture)
 There is a presenter layer which responsible for updating and controlling UI and commonly has methods like `showLoading`,
@@ -199,7 +199,7 @@ Here is an example
 Example
 -------
 
-You can find example of app on [Google Play Store](https://play.google.com/store/apps/details?id=ua.com.crosp.solutions.prettytoast)   
+You can find example of app on [Google Play Store](https://play.google.com/store/apps/details?id=ua.com.crosp.solutions.presenterlayout)   
 And of course in source code - module `app`
 
 Contribution

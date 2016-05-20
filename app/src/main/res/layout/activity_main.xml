@@ -3,11 +3,8 @@
 <ua.com.crosp.solutions.library.presenterlayout.layout.PresenterLayout
     android:id="@+id/presenter_layout_main"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    custom:inflate_default_views="true"
-    custom:show_initial_view="no_connection">
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -15,7 +12,7 @@
 
         <Button
             android:id="@+id/button_show_transparent"
-            android:layout_width="match_parent"
+            android:layout_width="matchg_parent"
             android:layout_height="wrap_content"
             android:layout_above="@+id/button_show_success"
             android:text="@string/text_show_transparent"/>

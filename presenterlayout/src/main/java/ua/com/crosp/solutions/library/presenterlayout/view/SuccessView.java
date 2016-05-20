@@ -4,7 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
-import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.joanzapata.iconify.widget.IconButton;
@@ -17,7 +17,8 @@ import ua.com.crosp.solutions.library.presenterview.R;
  * Project : PresenterLayout
  * Package : ua.com.crosp.solutions.library.presenterlayout.view
  */
-public class SuccessView extends FrameLayout {
+public class SuccessView extends LinearLayout {
+    public static final int WEIGHT_SUM = 6;
     // Views
     private IconTextView mIconTextViewSuccess;
     private Button mButtonSuccess;
@@ -33,12 +34,10 @@ public class SuccessView extends FrameLayout {
         initView();
     }
 
-    public SuccessView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        initView();
-    }
 
     public void initView() {
+        setWeightSum(WEIGHT_SUM);
+        setOrientation(VERTICAL);
         View inflatedView = inflate(getContext(), R.layout.view_overlapping_default_success, this);
         inflatedView.setBackgroundColor(getResources().getColor(R.color.default_background_success_layout));
         findViews(inflatedView);
@@ -62,6 +61,7 @@ public class SuccessView extends FrameLayout {
     public Button getButtonSuccess() {
         return mButtonSuccess;
     }
+
     public void setSuccessIcon(String successIcon) {
         mIconTextViewSuccess.setText(successIcon);
     }

@@ -3,7 +3,7 @@ package ua.com.crosp.solutions.library.presenterlayout.view;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.joanzapata.iconify.widget.IconTextView;
@@ -15,7 +15,8 @@ import ua.com.crosp.solutions.library.presenterview.R;
  * Project : PresenterLayout
  * Package : ua.com.crosp.solutions.library.presenterlayout.view
  */
-public class LoadingView extends FrameLayout {
+public class LoadingView extends LinearLayout {
+    public static final int WEIGHT_SUM = 3;
     // Views
     private TextView mTextViewLoading;
     private IconTextView mIconTextViewLoading;
@@ -30,12 +31,10 @@ public class LoadingView extends FrameLayout {
         initView();
     }
 
-    public LoadingView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        initView();
-    }
 
     public void initView() {
+        setWeightSum(WEIGHT_SUM);
+        setOrientation(VERTICAL);
         View inflatedView = inflate(getContext(), R.layout.view_overlapping_default_loading, this);
         inflatedView.setBackgroundColor(getResources().getColor(R.color.default_background_loading_layout));
         findViews(inflatedView);

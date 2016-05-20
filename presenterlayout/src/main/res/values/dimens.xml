@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="text_size_default_icon">130sp</dimen>
+    <dimen name="text_size_icon_default">130sp</dimen>
     <dimen name="text_size_default_title">40sp</dimen>
     <dimen name="radius_base_background">2dp</dimen>
+    <dimen name="text_size_button_default">30sp</dimen>
 </resources>

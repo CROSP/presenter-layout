@@ -4,7 +4,7 @@ import android.content.Context;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.joanzapata.iconify.widget.IconTextView;
@@ -21,7 +21,7 @@ public class ErrorView extends SwipeRefreshLayout {
     // Views
     private IconTextView mIconTextViewErrorIcon;
     private TextView mTextViewError;
-    private FrameLayout mFrameLayoutContainer;
+    private LinearLayout mLinearLayoutContainer;
     // Variables
     private boolean mMeasured = false;
     private boolean mPreMeasureRefreshing = false;
@@ -72,13 +72,13 @@ public class ErrorView extends SwipeRefreshLayout {
     }
 
     public void setErrorBackgroundColor(int backgroundColor) {
-        mFrameLayoutContainer.setBackgroundColor(backgroundColor);
+        mLinearLayoutContainer.setBackgroundColor(backgroundColor);
     }
 
     private void findViews(View parentView) {
         mIconTextViewErrorIcon = (IconTextView) parentView.findViewById(R.id.icon_text_view_error_icon);
         mTextViewError = (TextView) parentView.findViewById(R.id.text_view_error_text);
-        mFrameLayoutContainer = (FrameLayout) parentView.findViewById(R.id.frame_layout_view_container);
+        mLinearLayoutContainer = (LinearLayout) parentView.findViewById(R.id.linear_layout_view_container);
     }
     public IconTextView getIconTextViewErrorIcon() {
         return mIconTextViewErrorIcon;
@@ -88,8 +88,5 @@ public class ErrorView extends SwipeRefreshLayout {
         return mTextViewError;
     }
 
-    public FrameLayout getFrameLayoutContainer() {
-        return mFrameLayoutContainer;
-    }
 
 }

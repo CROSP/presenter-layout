@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);g
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mPresenterLayout = (PresenterLayout) findViewById(R.id.presenter_layout_main);
         final NoWifiView noWifiView = new NoWifiView(this);
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         mPresenterLayout.addOverlappingView(noWifiView, true);
-        mPresenterLayout.addOverlappingView(transparentView);
+        mPresenterLayout.addOverlappingView(transparentView,true);
         mButtonShowTransparent = (Button) findViewById(R.id.button_show_transparent);
         mButtonShowTransparent.setOnClickListener(new View.OnClickListener() {
             @Override

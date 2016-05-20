@@ -39,6 +39,7 @@ Screenshots
 ![](./screenshots/screen3.png)
 ![](./screenshots/screen4.png)
 ![](./screenshots/screen5.png)
+![](./screenshots/screen6.png)
 
 Download and Installation 
 -------------------------
@@ -170,7 +171,7 @@ public void setNoConnectionRefreshListener(SwipeRefreshLayout.OnRefreshListener 
 public void SwipeRefreshLayout getNoConnectionRefreshLayout();
 ```
 
-Moreover getters for these views, to my mind it is bad idea to expose view directly, but maybe someone wants to customize  
+Moreover layout provides getters for these views, to my mind it is bad idea to expose view directly, but maybe someone wants to customize  
 default view in runtime.
 
 ```java

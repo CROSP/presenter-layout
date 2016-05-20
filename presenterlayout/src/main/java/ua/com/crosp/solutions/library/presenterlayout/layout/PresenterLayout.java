@@ -344,6 +344,10 @@ public class PresenterLayout extends FrameLayout {
         return false;
     }
 
+    public boolean showOverlappingView(int viewId) {
+        return showOverlappingView(viewId, true);
+    }
+
     /**
      * Remove overlapping view added with {@link #addOverlappingView(View) addOverlappingView} method
      * Note : Default view cannot be removed because they are tied to public methods

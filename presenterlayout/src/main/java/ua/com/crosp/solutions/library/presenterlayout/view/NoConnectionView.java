@@ -4,7 +4,7 @@ import android.content.Context;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.joanzapata.iconify.widget.IconTextView;
@@ -20,7 +20,7 @@ public class NoConnectionView extends SwipeRefreshLayout {
     // Views
     private IconTextView mIconTextViewNoConnectionIcon;
     private TextView mTextViewNoConnection;
-    private FrameLayout mFrameLayoutContainer;
+    private LinearLayout mLinearLayoutContainer;
     // Variables
     private boolean mMeasured = false;
     private boolean mPreMeasureRefreshing = false;
@@ -63,7 +63,7 @@ public class NoConnectionView extends SwipeRefreshLayout {
     }
 
     public void setNoConnectionBackgroundColor(int backgroundColor) {
-        mFrameLayoutContainer.setBackgroundColor(backgroundColor);
+        mLinearLayoutContainer.setBackgroundColor(backgroundColor);
     }
 
     public void initView() {
@@ -74,7 +74,7 @@ public class NoConnectionView extends SwipeRefreshLayout {
     }
 
     private void findViews(View inflatedView) {
-        mFrameLayoutContainer = (FrameLayout) inflatedView.findViewById(R.id.frame_layout_view_container);
+        mLinearLayoutContainer = (LinearLayout) inflatedView.findViewById(R.id.linear_layout_view_container);
         mIconTextViewNoConnectionIcon = (IconTextView) inflatedView.findViewById(R.id.icon_text_view_no_connection_icon);
         mTextViewNoConnection = (TextView) inflatedView.findViewById(R.id.text_view_no_connection_text);
     }

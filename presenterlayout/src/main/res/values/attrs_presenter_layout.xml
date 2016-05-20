@@ -2,7 +2,6 @@
 <resources>
     <declare-styleable name="PresenterLayout">
         <attr name="background_color_overlapping" format="reference|color"/>
-        <attr name="show_overlapping_view_initially" format="boolean"/>
         <attr name="show_initial_view" format="enum">
             <enum name="loading" value="0"/>
             <enum name="success" value="1"/>

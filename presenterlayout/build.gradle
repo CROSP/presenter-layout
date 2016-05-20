@@ -1,5 +1,29 @@
 apply plugin: 'com.android.library'
 
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'presenter-layout'
+
+    publishedGroupId = 'ua.com.crosp.solutions.library'
+    libraryName = 'Presenter-Layout'
+    artifact = 'presenter-layout'
+
+    libraryDescription = 'This library helps to display overlapping views (topmost) in order to show some kind of message to capture user attention.   \n' +
+            'It can be an error, success message, loading bar or just simple text message.'
+
+    siteUrl = 'https://github.com/CROSP/presenter-layout'
+    gitUrl = 'https://github.com/CROSP/presenter-layout.git'
+
+    libraryVersion = '0.1.0'
+
+    developerId = 'crosp'
+    developerName = 'Alexander Molochko'
+    developerEmail = 'crospdevel@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
@@ -24,3 +48,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.3.0'
     compile 'com.joanzapata.iconify:android-iconify-fontawesome:2.2.2' // (v4.5)
 }
+// Place it at the end of the file
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'

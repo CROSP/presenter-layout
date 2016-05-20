@@ -9,32 +9,35 @@
         android:layout_height="match_parent"
         android:fillViewport="true">
 
-        <FrameLayout
-            android:id="@+id/frame_layout_view_container"
+        <LinearLayout
+            android:id="@+id/linear_layout_view_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/default_background_error_layout"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:weightSum="3">
 
             <com.joanzapata.iconify.widget.IconTextView
                 android:id="@+id/icon_text_view_error_icon"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
                 android:gravity="center"
                 android:text="@string/icon_fa_times_circle"
                 android:textColor="@color/default_text_color"
-                android:textSize="@dimen/text_size_default_icon"/>
+                android:textSize="@dimen/text_size_icon_default"/>
 
             <TextView
                 android:id="@+id/text_view_error_text"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_gravity="bottom"
                 android:layout_margin="20dp"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/text_error_occurred"
                 android:textColor="@color/default_text_color"
                 android:textSize="@dimen/text_size_default_title"/>
-        </FrameLayout>
+        </LinearLayout>
     </ScrollView>
 </merge>

@@ -49,12 +49,12 @@ Use Maven:
 <dependency>
   <groupId>ua.com.crosp.solutions.library</groupId>
   <artifactId>presenter-layout</artifactId>
-  <version>0.1.0</version>
+  <version>0.1.1</version>
 </dependency>
 ```
 or Gradle:
 ```groovy
-compile 'ua.com.crosp.solutions.library:presenter-layout:0.1.0'
+compile 'ua.com.crosp.solutions.library:presenter-layout:0.1.1'
 ```
 How does it work ?
 ------------------

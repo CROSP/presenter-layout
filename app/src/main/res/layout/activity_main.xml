@@ -12,7 +12,7 @@
 
         <Button
             android:id="@+id/button_show_transparent"
-            android:layout_width="matchg_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_above="@+id/button_show_success"
             android:text="@string/text_show_transparent"/>
